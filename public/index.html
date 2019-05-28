@@ -1,0 +1,149 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="TodoApi">
+
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Node/Angular Todo App</title>
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	<!-- load bootstrap -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+		integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<style>
+		html {
+			overflow-y: scroll;
+			text-align: center;
+		}
+
+		body {
+			padding-top: 50px;
+			width: 450px;
+			text-align: center;
+
+		}
+
+		#todo-list {
+			margin-bottom: 30px;
+			text-align: center;
+			font-size: 2rem;
+		}
+
+		#todo-form {
+			margin-bottom: 50px;
+			text-align: center;
+		}
+
+		.strikethrough {
+			text-decoration: line-through;
+		}
+
+		.done-true {
+			text-decoration: line-through;
+			color: grey;
+		}
+	</style>
+	<!-- SPELLS -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+
+	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
+	<script src="js/services/todos.js"></script> <!-- load our todo service -->
+	<script src="js/core.js"></script> <!-- load our main application -->
+
+</head>
+<!-- SET THE CONTROLLER -->
+
+<body ng-controller="mainController">
+
+	<div class="container">
+
+		<!-- HEADER AND TODO COUNT -->
+		<div class="badge-dark text-center">
+			<!-- jumbotron -->
+			<h1>To Do</h1>
+
+
+			<!-- TODO LIST -->
+			<div id="todo-list">
+				<!-- <div class="col-sm-4 col-sm-offset-4"> -->
+				<!-- LOOP OVER THE TODOS IN $scope.todos -->
+				<!-- <div class="checkbox" ng-repeat="todo in todos"> -->
+				<div class='md-padding' layout="row" layout-wrap ng-repeat="todo in todos">
+					<table>
+						<tr>
+							<td>
+								<!-- <input type="checkbox" name="tc" ngModel ng-click="updateTodo(todo._id)"> -->
+								<!-- <input type="checkbox" id="$index" ng-click="updateTodo(todo._id)" /> -->
+								<input type="checkbox" id="{{$index}}" ng-model="todo.completed"
+									ng-change="updateTodo(todo._id,todo)" />
+								<label for="{{$index}}" class="done-{{todo.completed}}">{{todo.text}}</label>&nbsp&nbsp
+								<!-- &nbsp{{todo._id}} -->
+								<!-- &nbsp{{$index}}} -->
+								<!-- &nbsp{{todo.completed}} -->
+							</td>
+
+
+							<td>
+								<button type="button" class="btn btn-default btn" ng-click="deleteTodo(todo._id)"><i
+										class="glyphicon glyphicon-trash"></i></button>
+
+							</td>
+
+						</tr>
+					</table>
+
+					<!-- <span ng-class-odd="'odd'" ng-class-even="'even'"> -->
+					<!-- <label> -->
+					<!-- <input type="checkbox" ng-click="deleteTodo(todo._id)"> -->
+					<!-- <span class="label label-info">{{ todo.text }}</span> -->
+					<!-- {{ todo.text }}
+					<button type="button" class="btn btn-default btn" ng-click="deleteTodo(todo._id)"><i
+							class="glyphicon glyphicon-trash"></i></button> -->
+
+					<!-- </label> -->
+					<!-- </span> -->
+				</div>
+
+				<p class="text-center" ng-show="loading">
+					<span class="fa fa-spinner fa-spin fa-3x fa-fw"></span>
+				</p>
+
+				<!-- </div> -->
+			</div>
+
+			<!-- FORM TO CREATE TODOS -->
+			<div id="todo-form">
+				<!-- <div class="col-sm-8 col-sm-offset-2 text-center"> -->
+				<form>
+
+					<div class="form-group">
+						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+						<input id="todotext" namme="todotext" required minlength="1" type="text" class="form-control"
+							placeholder="Add your Task" ng-model="formData.text">
+						<!-- createToDo() WILL CREATE NEW TODOS -->
+
+						<button type="submit" class="btn btn-success" ng-click="createTodo()">Add</button>
+					</div>
+
+
+				</form>
+				<!-- </div> -->
+				<h1 class="text-right text-muted">
+					<p>Version 1.0</p>
+				</h1>
+			</div>
+
+
+
+		</div>
+	</div>
+</body>
+
+</html>
