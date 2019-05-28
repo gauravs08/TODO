@@ -33,5 +33,7 @@ MongoDB stores todo collection.
         "_id": "5ced59816244ab47b0257cd4",
         "__v": 0
     }`
+ ## Demo
+![Todo-APP](http://g.recordit.co/ES6t1c9iTA.gif)
 
-![Todo-APP](http://g.recordit.co/V3knMN7hJu.gif)
+![Mongo db](http://g.recordit.co/c5MitHP9vr.gif)
